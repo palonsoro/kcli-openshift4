@@ -30,7 +30,6 @@ spec:
         NETMASK=$(ip -o -f inet addr show | awk '/scope global/ {print $4}' | head -1 | cut -d'/' -f2)
         if [ "$NETMASK" != "" ] ; then
           sed -i "s@{{ api_ip }}@{{ api_ip }}/$NETMASK@" /etc/keepalived/keepalived.conf
-          sed -i "s@{{ dns_ip }}@{{ dns_ip }}/$NETMASK@" /etc/keepalived/keepalived.conf
         fi
       fi
     resources: {}
